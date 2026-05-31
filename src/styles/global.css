@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body, #root { height: 100%; }
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background:
+      radial-gradient(ellipse 60% 40% at 0% 0%, rgba(255,107,26,.10) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 30% at 100% 100%, rgba(200,16,46,.10) 0%, transparent 60%),
+      #0a0a0a;
+    min-height: 100vh;
+    color: white;
+    font-family: 'Inter', '-apple-system', '"Helvetica Neue"', '"PingFang SC"', sans-serif;
+  }
+  ::selection {
+    background: rgba(255,107,26,.35);
+    color: white;
+  }
+}
+
+@layer components {
+  .display-hero {
+    @apply font-display font-extrabold uppercase leading-none tracking-tight;
+  }
+  .stroke-fill {
+    -webkit-text-stroke: 2px white;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  .gold-fill {
+    background: linear-gradient(180deg, #FFB347 0%, #FF6B1A 50%, #C8102E 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+  .kicker {
+    @apply font-mono text-[11px] font-bold uppercase tracking-[0.25em] text-gold;
+  }
+  .panel {
+    @apply rounded-md border border-line bg-white/[0.02] backdrop-blur-sm;
+  }
+  .item-row {
+    @apply rounded-md border border-line bg-gradient-to-br from-white/[0.04] to-white/[0.01] transition-all;
+    border-left: 3px solid #FF6B1A;
+  }
+  .item-row:hover {
+    transform: translateX(4px);
+    border-left-color: #C8102E;
+  }
+  .stadium {
+    background: var(--tw-gradient-from, transparent);
+    background-image:
+      radial-gradient(ellipse 80% 60% at 50% 30%, rgba(255,107,26,.18) 0%, transparent 60%),
+      radial-gradient(ellipse 100% 70% at 50% 100%, rgba(200,16,46,.22) 0%, transparent 65%),
+      linear-gradient(180deg, #0a0a0a 0%, #1a0808 100%);
+  }
+}
+
+/* Recharts text overrides */
+.recharts-text { fill: rgba(255,255,255,.7); font-family: 'JetBrains Mono', monospace; }
+.recharts-cartesian-axis-line, .recharts-cartesian-axis-tick-line { stroke: rgba(255,255,255,.15); }
+.recharts-cartesian-grid-vertical line, .recharts-cartesian-grid-horizontal line { stroke: rgba(255,255,255,.06); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
