@@ -41,11 +41,11 @@ export default function Bracket() {
     <div className="flex flex-col gap-6">
       <div>
         <div className="kicker">KNOCKOUT STAGE</div>
-        <h1 className="font-display font-extrabold text-4xl uppercase mt-1">
+        <h1 className="font-display font-extrabold text-3xl sm:text-4xl uppercase mt-1">
           Bracket <span className="gold-fill">Probability</span>
         </h1>
         <p className="text-dim text-sm mt-2 max-w-2xl">
-          每队走到各阶段的频率（占总模拟次数）。点任一阶段的球队 → 看它会面对的最常见对手。
+          每队走到各阶段的频率（占总模拟次数）。
         </p>
       </div>
 
@@ -55,12 +55,12 @@ export default function Bracket() {
           <p className="text-dim mt-2">回 Overview 页 · 按 RUN SIMULATION</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
           {stages.map((s) => (
-            <section key={s.stage} className="panel p-5 flex flex-col">
-              <header className="mb-4">
-                <div className="kicker mb-1">{s.label}</div>
-                <div className="font-display text-3xl gold-fill">{s.count}</div>
+            <section key={s.stage} className="panel p-3 sm:p-5 flex flex-col">
+              <header className="mb-3 sm:mb-4">
+                <div className="kicker mb-1 text-[10px] sm:text-[11px]">{s.label}</div>
+                <div className="font-display text-2xl sm:text-3xl gold-fill">{s.count}</div>
                 <div className="font-mono text-[10px] text-dim tracking-wider">SLOTS</div>
               </header>
               <ul className="flex flex-col gap-1.5 flex-1">
@@ -89,7 +89,7 @@ export default function Bracket() {
       )}
 
       {lastRun ? (
-        <section className="panel p-6">
+        <section className="panel p-4 sm:p-6">
           <div className="kicker mb-3">FULL LADDER</div>
           <div className="overflow-x-auto -mx-2">
             <table className="w-full text-sm font-mono min-w-[640px]">

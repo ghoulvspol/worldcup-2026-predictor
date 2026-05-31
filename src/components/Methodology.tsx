@@ -4,17 +4,17 @@
  */
 export default function Methodology() {
   return (
-    <section id="methodology" className="panel p-6 md:p-8">
+    <section id="methodology" className="panel p-4 sm:p-6 md:p-8 scroll-mt-20">
       <div className="kicker mb-2">METHODOLOGY · 预测依据</div>
-      <h2 className="font-display font-extrabold text-3xl md:text-4xl uppercase mb-2">
+      <h2 className="font-display font-extrabold text-2xl sm:text-3xl md:text-4xl uppercase mb-2">
         这些数字是<span className="gold-fill">怎么算</span>出来的
       </h2>
       <p className="text-dim text-sm md:text-base max-w-3xl mb-6">
         本预测不是占卜，也不是黑盒 ML。一句话：用 ELO 把球队实力换成期望进球，用 Poisson 抽进球数，
-        再用蒙特卡洛跑 10000 次平行宇宙。下面是每一步用到的输入和公式。
+        再用蒙特卡洛跑 10000 次平行宇宙。
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
         <Step
           n="01"
           title="输入数据"
@@ -133,7 +133,7 @@ export default function Methodology() {
         />
       </div>
 
-      <div className="mt-8 panel border-l-[3px] border-gold/40 bg-gold-soft p-5">
+      <div className="mt-6 sm:mt-8 panel border-l-[3px] border-gold/40 bg-gold-soft p-4 sm:p-5">
         <div className="kicker mb-2">CAVEATS · 不要过度信赖这些数字</div>
         <ul className="text-sm text-white space-y-1.5">
           <li>· ELO 不能完全刻画战术、伤病、首发选择</li>
@@ -159,13 +159,13 @@ interface StepProps {
 
 function Step({ n, title, subtitle, body }: StepProps) {
   return (
-    <article className="panel p-5 flex flex-col">
-      <header className="flex items-baseline justify-between mb-3 pb-3 border-b border-line">
-        <div className="flex items-baseline gap-3">
-          <span className="font-display text-3xl gold-fill leading-none">{n}</span>
-          <h3 className="font-display font-extrabold text-xl uppercase">{title}</h3>
+    <article className="panel p-4 sm:p-5 flex flex-col">
+      <header className="flex items-baseline justify-between mb-3 pb-3 border-b border-line gap-2">
+        <div className="flex items-baseline gap-2.5 sm:gap-3 min-w-0">
+          <span className="font-display text-2xl sm:text-3xl gold-fill leading-none shrink-0">{n}</span>
+          <h3 className="font-display font-extrabold text-lg sm:text-xl uppercase truncate">{title}</h3>
         </div>
-        <span className="kicker text-[10px]">{subtitle}</span>
+        <span className="kicker text-[10px] shrink-0">{subtitle}</span>
       </header>
       <div className="flex-1">{body}</div>
     </article>

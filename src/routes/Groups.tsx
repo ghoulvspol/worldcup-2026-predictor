@@ -21,22 +21,22 @@ export default function GroupsRoute() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex items-end justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
         <div>
           <div className="kicker">GROUP STAGE</div>
-          <h1 className="font-display font-extrabold text-4xl uppercase mt-1">
+          <h1 className="font-display font-extrabold text-3xl sm:text-4xl uppercase mt-1">
             12 Groups · <span className="gold-fill">Projected</span>
           </h1>
           <p className="text-dim text-sm mt-2 max-w-2xl">
-            按 FIFA 排名预投影分档。前 2 + 8 个最佳第 3 进入 32 强。 模拟概率取自上一次 Run。
+            按 FIFA 排名预投影分档。前 2 + 8 个最佳第 3 进入 32 强。
           </p>
         </div>
         {lastRun ? (
-          <span className="font-mono text-xs text-dim tracking-wider">
+          <span className="font-mono text-[10px] sm:text-xs text-dim tracking-wider">
             BASED ON {lastRun.totalRuns.toLocaleString()} RUNS
           </span>
         ) : (
-          <span className="font-mono text-xs text-gold tracking-wider">— RUN SIM TO SHOW PROBS —</span>
+          <span className="font-mono text-[10px] sm:text-xs text-gold tracking-wider">— RUN SIM TO SHOW PROBS —</span>
         )}
       </div>
 

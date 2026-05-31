@@ -13,27 +13,27 @@ export default function Teams() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex items-end justify-between flex-wrap gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
         <div>
           <div className="kicker">TEAMS · ELO TUNING</div>
-          <h1 className="font-display font-extrabold text-4xl uppercase mt-1">
+          <h1 className="font-display font-extrabold text-3xl sm:text-4xl uppercase mt-1">
             48 Teams · <span className="gold-fill">Adjustable</span>
           </h1>
           <p className="text-dim text-sm mt-2 max-w-2xl">
-            觉得阿根廷应该再高一点？把 ELO 改了，按右上角"RE-SIMULATE"重算。
+            觉得阿根廷应该再高一点？把 ELO 改了，按"RE-SIMULATE"重算。
           </p>
         </div>
-        <div className="flex gap-3">
+        <div className="flex gap-2 sm:gap-3">
           <button
             onClick={resetEloOverrides}
-            className="font-mono text-xs uppercase tracking-wider px-4 py-2 rounded border border-line text-dim hover:border-red hover:text-red transition-all"
+            className="flex-1 sm:flex-none font-mono text-xs uppercase tracking-wider px-4 py-2.5 rounded border border-line text-dim hover:border-red hover:text-red transition-all"
           >
             RESET ELO
           </button>
           <button
             onClick={runSimulation}
             disabled={isRunning}
-            className={`font-display font-extrabold uppercase tracking-wider px-5 py-2 rounded-md transition-all border ${
+            className={`flex-1 sm:flex-none font-display font-extrabold uppercase tracking-wider px-5 py-2.5 rounded-md transition-all border ${
               isRunning
                 ? 'bg-white/5 border-line text-dim cursor-wait'
                 : 'bg-gold-fill border-gold text-bg-0 hover:scale-[1.02] active:scale-95'
@@ -64,7 +64,8 @@ export default function Teams() {
         ))}
       </div>
 
-      <div className="panel p-2">
+      {/* Desktop: table */}
+      <div className="hidden md:block panel p-2">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-line text-left text-[11px] tracking-wider text-dim uppercase font-mono">
@@ -119,6 +120,42 @@ export default function Teams() {
             ))}
           </tbody>
         </table>
+      </div>
+
+      {/* Mobile: card list */}
+      <div className="md:hidden flex flex-col gap-2.5">
+        {filtered.map((t, i) => (
+          <article key={t.code} className="panel p-3.5 flex items-center gap-3">
+            <span className="font-mono text-xs text-dim w-5 text-center shrink-0">{i + 1}</span>
+            <span className="text-3xl shrink-0">{t.flag}</span>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-baseline gap-2 flex-wrap">
+                <span className="font-medium truncate">{t.name}</span>
+                <span className="font-display text-gold text-sm">G{t.group}</span>
+                {t.projected ? (
+                  <span className="font-mono text-[9px] uppercase tracking-wider text-red border border-red/40 px-1.5 py-0.5 rounded">
+                    Proj
+                  </span>
+                ) : null}
+              </div>
+              <div className="flex items-center gap-2 mt-1.5">
+                <span className="font-mono text-[10px] text-dim tracking-wider">FIFA #{t.fifaRank}</span>
+                <span className="font-mono text-[10px] text-dim/70">·</span>
+                <span className="font-mono text-[10px] text-dim tracking-wider">P{t.pot}</span>
+              </div>
+            </div>
+            <input
+              type="number"
+              min={1200}
+              max={2200}
+              step={10}
+              value={Math.round(t.elo)}
+              onChange={(e) => setEloOverride(t.code, parseInt(e.target.value, 10) || t.elo)}
+              className="bg-white/5 border border-line rounded px-2 py-1.5 w-20 font-mono text-sm focus:outline-none focus:border-gold shrink-0"
+              aria-label={`${t.name} ELO`}
+            />
+          </article>
+        ))}
       </div>
     </div>
   );

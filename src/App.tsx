@@ -10,7 +10,7 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-1 mx-auto w-full max-w-[1400px] px-6 py-10">
+      <main className="flex-1 mx-auto w-full max-w-[1400px] px-4 sm:px-6 py-6 sm:py-10">
         <Routes>
           <Route path="/" element={<Overview />} />
           <Route path="/groups" element={<Groups />} />

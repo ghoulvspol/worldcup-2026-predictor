@@ -126,19 +126,19 @@ export default function Overview() {
             />
           </section>
 
-          <section className="panel p-6">
-            <div className="flex items-end justify-between mb-5">
+          <section className="panel p-4 sm:p-6">
+            <div className="flex items-end justify-between mb-4 sm:mb-5 gap-2 flex-wrap">
               <div>
                 <div className="kicker">CHAMPION PROBABILITY</div>
-                <h3 className="font-display font-extrabold text-2xl uppercase mt-1">
+                <h3 className="font-display font-extrabold text-xl sm:text-2xl uppercase mt-1">
                   Top 24 by win odds
                 </h3>
               </div>
-              <span className="font-mono text-xs text-dim tracking-wider">
+              <span className="font-mono text-[10px] sm:text-xs text-dim tracking-wider">
                 BASED ON {lastRun.totalRuns.toLocaleString()} RUNS
               </span>
             </div>
-            <div className="h-[520px]">
+            <div className="h-[420px] sm:h-[520px]">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart
                   data={champRanking.slice(0, 24)}
@@ -182,21 +182,23 @@ export default function Overview() {
           </section>
 
           {finalsTop.length > 0 ? (
-            <section className="panel p-6">
+            <section className="panel p-4 sm:p-6">
               <div className="kicker mb-2">MOST FREQUENT FINALS</div>
-              <h3 className="font-display font-extrabold text-2xl uppercase mb-5">Top 5 finals matchups</h3>
+              <h3 className="font-display font-extrabold text-xl sm:text-2xl uppercase mb-4 sm:mb-5">Top 5 finals matchups</h3>
               <div className="flex flex-col gap-3">
                 {finalsTop.map((f, i) => (
-                  <div key={i} className="flex items-center gap-4 py-2 border-b border-line last:border-0">
-                    <span className="font-display text-2xl text-gold w-8 text-center">{(i + 1).toString().padStart(2, '0')}</span>
-                    <div className="flex items-center gap-3 flex-1 text-base">
-                      <span className="text-2xl">{f.a?.flag}</span>
-                      <span className="text-white font-medium">{f.a?.name}</span>
-                      <span className="font-mono text-xs text-red mx-1">VS</span>
-                      <span className="text-2xl">{f.b?.flag}</span>
-                      <span className="text-white font-medium">{f.b?.name}</span>
+                  <div key={i} className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 py-2 border-b border-line last:border-0">
+                    <div className="flex items-center gap-3">
+                      <span className="font-display text-2xl text-gold w-7 text-center shrink-0">{(i + 1).toString().padStart(2, '0')}</span>
+                      <div className="flex items-center gap-2 flex-1 text-sm sm:text-base">
+                        <span className="text-xl sm:text-2xl">{f.a?.flag}</span>
+                        <span className="text-white font-medium">{f.a?.name}</span>
+                        <span className="font-mono text-[10px] sm:text-xs text-red mx-0.5 sm:mx-1">VS</span>
+                        <span className="text-xl sm:text-2xl">{f.b?.flag}</span>
+                        <span className="text-white font-medium">{f.b?.name}</span>
+                      </div>
                     </div>
-                    <div className="w-48"><ProbBar value={f.prob} /></div>
+                    <div className="w-full sm:w-48 sm:shrink-0 pl-10 sm:pl-0"><ProbBar value={f.prob} /></div>
                   </div>
                 ))}
               </div>
@@ -212,7 +214,7 @@ export default function Overview() {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden rounded-2xl stadium border border-line p-10 md:p-14">
+    <section className="relative overflow-hidden rounded-2xl stadium border border-line p-6 sm:p-10 md:p-14">
       <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[120%] aspect-square rounded-full border border-gold/20 pointer-events-none" />
       <div
         className="absolute top-0 right-0 w-[8%] h-full opacity-[0.18]"
@@ -228,11 +230,11 @@ function Hero() {
             ★ Projected Lineup · 2026.05
           </span>
         </div>
-        <h1 className="display-hero text-5xl md:text-7xl">
+        <h1 className="display-hero text-4xl sm:text-5xl md:text-7xl">
           <span className="stroke-fill block">WORLD CUP</span>
           <span className="gold-fill block">MONTE CARLO</span>
         </h1>
-        <p className="mt-6 max-w-xl font-sans text-base md:text-lg text-dim leading-relaxed">
+        <p className="mt-4 sm:mt-6 max-w-xl font-sans text-sm sm:text-base md:text-lg text-dim leading-relaxed">
           48 队 · 12 小组 · Poisson + ELO + 主场加成。<br />
           按下按钮，让 1 万次平行宇宙告诉你谁是冠军。
         </p>
